@@ -12,7 +12,7 @@ endif()
 project ("cppStats")
 
 # Add source to this project's executable.
-add_executable (cppStats "cppStats.cpp" "cppStats.h")
+add_executable (cppStats "main.cpp" "header.hpp" "utils.cpp")
 
 if (CMAKE_VERSION VERSION_GREATER 3.12)
   set_property(TARGET cppStats PROPERTY CXX_STANDARD 20)
