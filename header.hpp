@@ -5,8 +5,15 @@
 #include <iostream>
 #define N '\n'
 
+/*
+TEDIOUS LINUX COMMANDS:
 
+g++ main.cpp utils.cpp -o out/build/x64-debug/cppStats.exe
+./out/build/x64-debug/cppStats.exe
 
+*/
+
+int add(int a, int b);
 
 
 
