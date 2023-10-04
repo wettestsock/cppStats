@@ -2,6 +2,7 @@
 # project specific logic here.
 #
 cmake_minimum_required (VERSION 3.8)
+project(cppStats LANGUAGES CXX DESCRIPTION "Efficient statistics in c++ using a table design.")
 
 # Enable Hot Reload for MSVC compilers if supported.
 if (POLICY CMP0141)
@@ -12,7 +13,8 @@ endif()
 project ("cppStats")
 
 # Add source to this project's executable.
-add_executable (cppStats "main.cpp" "header.hpp" "utils.cpp")
+#DO NOT COMPILE THE HEADER FILE
+add_executable (cppStats main.cpp utils.cpp)
 
 if (CMAKE_VERSION VERSION_GREATER 3.12)
   set_property(TARGET cppStats PROPERTY CXX_STANDARD 20)

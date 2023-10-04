@@ -6,11 +6,12 @@
 #define N '\n'
 
 /*
-TEDIOUS LINUX COMMANDS:
+TEDIOUS LINUX COMMAND:
 
-g++ main.cpp utils.cpp -o out/build/x64-debug/cppStats.exe
-./out/build/x64-debug/cppStats.exe
 
+cmake ../.. && make && ./cppStats
+
+^ compile     ^make an exe   ^ run the exe
 */
 
 int add(int a, int b);

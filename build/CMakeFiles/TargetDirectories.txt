@@ -1,3 +1,0 @@
-/mnt/c/Users/evils/Desktop/coding/cppStats/build/CMakeFiles/rebuild_cache.dir
-/mnt/c/Users/evils/Desktop/coding/cppStats/build/CMakeFiles/edit_cache.dir
-/mnt/c/Users/evils/Desktop/coding/cppStats/build/CMakeFiles/cppStats.dir

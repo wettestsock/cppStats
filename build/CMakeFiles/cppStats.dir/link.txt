@@ -1,1 +1,0 @@
-/usr/bin/c++     CMakeFiles/cppStats.dir/main.cpp.o CMakeFiles/cppStats.dir/utils.cpp.o  -o cppStats 
