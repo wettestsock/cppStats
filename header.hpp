@@ -7,25 +7,33 @@
 /*
 TEDIOUS LINUX COMMAND:
 
+cppStats/out/linuxBuild <- cd to this
 cmake ../.. && make && ./cppStats
+
 
 ^ compile     ^make an exe   ^ run the exe
 */
 
 int test(int a, int b);  //test function
 
-void initialize();
+void init();
 
-template <typename T> //typename, 
-//usually std::vector for the data cells, str or int for col/row names
-struct cell {  //each cell, includes the columns and rows
-	T data;
-	std::shared_ptr<cell> right;
-	std::shared_ptr<cell> down;
+template <typename T> 
+struct cell {
+	T data; //string for names, int vectors for data (usually)
+	cell<T>* down;
+	cell<T>* right;
 };
 
 class table {
-	
+	int rows;
+	int cols;
+	cell<std::string>* head;
+
+	int get_Uint(const std::string& question);
+
+
+	void makeCell();
 
 public:
 	table();
@@ -34,5 +42,4 @@ public:
 	void print();
 	void print(table);
 };
-
 

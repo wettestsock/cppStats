@@ -10,19 +10,22 @@ int test(int a, int b) {
 
 };
 
-void initialize() {
-	int rows = 0;
-	int cols = 0;
-	int i = 0;
-	std::string in;
+void init() {
 	std::cout << "EFFICIENT TABLE DATA ANALYZER\nby Dmytro Moshkovskyi\n\n";
-	while (rows<1)
+	table a;
+}
+
+
+int table::get_Uint(const std::string& question){
+	std::string in;
+	int out = 0;
+	while (out < 1)
 	{
-		std::cout << "How many rows?\t";
+		std::cout << question << '\t';
 		std::cin >> in;
 		try
 		{
-			rows = std::stoi(in);
+			out= std::stoi(in);
 		}
 		catch (const std::invalid_argument&)
 		{
@@ -32,27 +35,47 @@ void initialize() {
 			continue;
 		}
 	}
-	for (i = 0; i < rows; ++i) {
+	std::cout << N;
+	return out;
+};
+
+table::table(): 
+//member initialization list
+rows(get_Uint("How many rows?")),  //rows init
+cols(get_Uint("How many columns?")),  //cols init
+head(new cell<std::string>) //head cell init
+{
+	//constructor body
+
+	*head = {"TABLE", nullptr, nullptr}; //head values init
+	//TODO: add capabilities for multiple table storage
+	
+	//std::cout << head->data << N << head->right << N <<head->down<<N;
+
+	
+	cell<std::string>* c = head;
+	for (int i = 1; i < rows; ++i) {
+		cell<std::string>* newCell = new cell<std::string>;
+		
 		std::cout << "Row " << i + 1 << " name:\t";
+		std::cin >> newCell->data;
+		c->down = newCell;
+		c = newCell;
+
+
+
+
+	}
+	for (int i = 0; i < cols; ++i) {
+		cell<std::string>* newCell = new cell<std::string>;
+		std::cout << "Column " << i + 1 << " name:\t";
+		std::cin >> newCell->data;
 	}
 
-	while (cols < 1)
-	{
-		std::cout << "How many columns?\t";
-		std::cin >> cols;
-	}
-
-	for (i = 0; i < cols; ++i) {
-		std::cout << "Column " << i + 1<<" name:\t";
-	}
-	
 
 
 };
 
-table::table() {
-	
-};
 
 table::~table() {
 

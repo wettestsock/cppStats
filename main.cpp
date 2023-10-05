@@ -8,7 +8,7 @@
 
 int main()
 {
-	initialize();
+	init();
 	std::cout << test(3,5) << N;
 
 	//cell<int>* cool = new cell<int>;
