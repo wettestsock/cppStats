@@ -1,7 +1,10 @@
 #include <iostream>
+#include <vector>
+#include <memory>
 #include "header.hpp"
 
-int add(int a, int b) {
-	return a + b;
+int test(int a, int b) {
+	int c = a * b;
+	return a + b + c;
 
 };
