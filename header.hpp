@@ -1,7 +1,4 @@
-﻿// cppStats.h : Include file for standard system include files,
-// or project specific include files.
-
-#pragma once
+﻿#pragma once
 #include <iostream>
 #include <memory>
 #include <vector>
@@ -10,22 +7,32 @@
 /*
 TEDIOUS LINUX COMMAND:
 
-
 cmake ../.. && make && ./cppStats
 
 ^ compile     ^make an exe   ^ run the exe
 */
 
-int test(int a, int b);
+int test(int a, int b);  //test function
 
-template <typename T>
-struct cell {
+void initialize();
+
+template <typename T> //typename, 
+//usually std::vector for the data cells, str or int for col/row names
+struct cell {  //each cell, includes the columns and rows
 	T data;
 	std::shared_ptr<cell> right;
 	std::shared_ptr<cell> down;
-	//std::shared_ptr<cell> right = std::make_shared<cell>();
-	//std::shared_ptr<cell> down = std::make_shared<cell>();
+};
+
+class table {
+	
+
+public:
+	table();
+	~table();
+
+	void print();
+	void print(table);
 };
 
 
-// TODO: Reference additional headers your program requires here.

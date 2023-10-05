@@ -8,15 +8,16 @@
 
 int main()
 {
+	initialize();
 	std::cout << test(3,5) << N;
 
 	//cell<int>* cool = new cell<int>;
 
 	std::unique_ptr<cell<int>> cool(new cell<int>);
 	cool->data = 54;
-	std::cout << cool->data;
+	std::cout << cool->data << N;
 
 
-	std::cin.get();
+	//std::cin.get();
 	return 0;
 }
