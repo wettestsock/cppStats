@@ -2,14 +2,15 @@
 #include <iostream>
 #include <memory>
 #include <vector>
-#define N '\n'
+
+#define N '\n'						//for debug
+#define strPtr cell<std::string>	//annoying 
 
 /*
 TEDIOUS LINUX COMMAND:
 
-cppStats/out/linuxBuild <- cd to this
+cppStats/out/linuxBuild 
 cmake ../.. && make && ./cppStats
-
 
 ^ compile     ^make an exe   ^ run the exe
 */

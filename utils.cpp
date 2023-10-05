@@ -43,7 +43,7 @@ table::table():
 //member initialization list
 rows(get_Uint("How many rows?")),  //rows init
 cols(get_Uint("How many columns?")),  //cols init
-head(new cell<std::string>) //head cell init
+head(new strPtr) //head cell init
 {
 	//constructor body
 
@@ -53,9 +53,9 @@ head(new cell<std::string>) //head cell init
 	//std::cout << head->data << N << head->right << N <<head->down<<N;
 
 	
-	cell<std::string>* c = head;
+	strPtr* c = head;
 	for (int i = 1; i < rows; ++i) {
-		cell<std::string>* newCell = new cell<std::string>;
+		strPtr* newCell = new strPtr;
 		
 		std::cout << "Row " << i + 1 << " name:\t";
 		std::cin >> newCell->data;
@@ -63,11 +63,9 @@ head(new cell<std::string>) //head cell init
 		c = newCell;
 
 
-
-
 	}
 	for (int i = 0; i < cols; ++i) {
-		cell<std::string>* newCell = new cell<std::string>;
+		strPtr* newCell = new strPtr;
 		std::cout << "Column " << i + 1 << " name:\t";
 		std::cin >> newCell->data;
 	}
@@ -78,7 +76,19 @@ head(new cell<std::string>) //head cell init
 
 
 table::~table() {
+	//destructor
+	//deallocates all the raw pointers
 
+
+	strPtr* rDel = head;
+	while (rDel != NULL) {
+		strPtr* temp = rDel;
+		rDel = rDel->down;
+		delete temp;
+	}
+	head = nullptr; //makes head null
+
+	//std::cout << "deleted the pointers"<< N;
 }
 
 void table::print() {
