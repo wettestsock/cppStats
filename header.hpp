@@ -4,9 +4,9 @@
 #include <vector>
 
 #define N '\n'						//for debug
-#define str_ptr cell<std::string>	//annoying 
-#define int_ptr cell<int>
-#define dbl_ptr cell<double>
+#define str_cell cell<std::string>	//annoying 
+#define int_cell cell<int>
+#define dbl_cell cell<double>
 
 /*
 TEDIOUS LINUX COMMAND:
@@ -29,13 +29,12 @@ struct cell {
 };
 
 class table {
-	int rows;
-	int cols;
-	static unsigned int rowLen;
-	static unsigned int colLen;
-	str_ptr* head;
+	int rows, cols;
+	size_t rowLen, colLen;
+	str_cell* colHead, rowHead;
 
 	int get_Uint(const std::string& question);
+	void len_check(const str_cell*& c, size_t& lenCounter);
 
 
 	void makeCell();

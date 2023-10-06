@@ -15,17 +15,17 @@ void init() {
 	table a;
 }
 
-
+//HELPER FUNCTIONS
 int table::get_Uint(const std::string& question){
 	std::string in;
 	int out = 0;
-	while (out < 1)
+	while (out == 0)
 	{
 		std::cout << question << '\t';
 		std::cin >> in;
 		try
 		{
-			out= std::stoi(in);
+			out= abs(std::stoi(in));
 		}
 		catch (const std::invalid_argument&)
 		{
@@ -39,50 +39,57 @@ int table::get_Uint(const std::string& question){
 	return out;
 };
 
+
+void table::len_check(const str_cell*& c, size_t& lenCounter) {
+	if (c.data.length() > colLen)
+		lenCounter = c.data.length();
+};
+
+
+
+
+
 table::table(): 
 //member initialization list
 rows(get_Uint("How many rows?")),  //rows init
 cols(get_Uint("How many columns?")),  //cols init
-head(new str_ptr) //head cell init
+rowLen(1),
+colLen(1),
+colHead(new str_cell) //head cell init
+rowHead(new str_cell) //head cell init
 {
 	//constructor body
-
-	*head = {"TABLE", nullptr, nullptr}; //head values init
 	//TODO: add capabilities for multiple table storage
-	
+
 	//std::cout << head->data << N << head->right << N <<head->down<<N;
-
 	
-	str_ptr* c = head;
-	rowLen = 1;
+
+	str_cell* c = colHead;
+		
+
 	for (int i = 0; i < rows; ++i) {
-		str_ptr* newCell = new str_ptr;
-		
-		std::cout << "Row " << i + 1 << " name:\t";
-		std::getline(std::cin, newCell->data);
+		str_cell* newRow = new str_cell;
+		std::cout << "Row " << i+1 << " name:\n";
+		std::getline(std::cin, newRow->data);
 
-		if (newCell->data.length() > rowLen)	
-			rowLen = newCell->data.length();
+		len_check(newRow, rowLen);
+		c->down = newRow;
+		c = newRow;
 
-		c->down = newCell;
-		c = newCell;
-		
 	}
 
-	c = head;
-	colLen = 1;
+	c = rowHead;
 	for (int i = 0; i < cols; ++i) {
-		str_ptr* newCell = new str_ptr;
-		std::cout << "Column " << i + 1 << " name:\t";
-		std::getline(std::cin, newCell->data);
+		str_cell* newCol = new str_cell;
+		std::cout << "Col " << i+1 << " name:\n";
+		std::getline(std::cin, newCol->data);
 
-		if (newCell->data.length() > colLen)
-			colLen = newCell->data.length();
+		len_check(newCol, colLen);
 
-		c->right = newCell;
-		c = newCell;
+		c->right = newCol;
+		c = newCol;
 	}
-	std::cout << "row len: " << rowLen << N << "col len: " << colLen;
+	std::cout << "row len: " << rowLen << N << "col len: " << colLen<<N;
 
 
 
@@ -96,11 +103,11 @@ table::~table() {
 	//deallocates all the raw pointers
 	//TODO: DELETE ALL ROWS 
 
-	str_ptr* col_del = head;
+	str_cell* col_del = head;
 	while (col_del != NULL) {
 		
 
-		str_ptr* temp = col_del;
+		str_cell* temp = col_del;
 		col_del = col_del->down;
 		delete temp;
 	}
