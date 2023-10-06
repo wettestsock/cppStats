@@ -29,12 +29,16 @@ struct cell {
 };
 
 class table {
-	int rows, cols;
-	size_t rowLen, colLen;
-	str_cell* colHead, rowHead;
+	int rows;
+	int cols;
+	size_t rowLen;
+	size_t colLen;
+	str_cell* rowHead;
+	str_cell* colHead;
 
-	int get_Uint(const std::string& question);
-	void len_check(const str_cell*& c, size_t& lenCounter);
+	int get_Uint(const std::string& question); //get unsigned integer
+	void len_ctr(const str_cell& c, size_t& lenCounter);  //cell length counter
+	//TODO: add function overrides to add diff cell types
 
 
 	void makeCell();
