@@ -4,7 +4,9 @@
 #include <vector>
 
 #define N '\n'						//for debug
-#define strPtr cell<std::string>	//annoying 
+#define str_ptr cell<std::string>	//annoying 
+#define int_ptr cell<int>
+#define dbl_ptr cell<double>
 
 /*
 TEDIOUS LINUX COMMAND:
@@ -29,7 +31,9 @@ struct cell {
 class table {
 	int rows;
 	int cols;
-	cell<std::string>* head;
+	static unsigned int rowLen;
+	static unsigned int colLen;
+	str_ptr* head;
 
 	int get_Uint(const std::string& question);
 

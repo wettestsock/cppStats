@@ -43,7 +43,7 @@ table::table():
 //member initialization list
 rows(get_Uint("How many rows?")),  //rows init
 cols(get_Uint("How many columns?")),  //cols init
-head(new strPtr) //head cell init
+head(new str_ptr) //head cell init
 {
 	//constructor body
 
@@ -53,22 +53,38 @@ head(new strPtr) //head cell init
 	//std::cout << head->data << N << head->right << N <<head->down<<N;
 
 	
-	strPtr* c = head;
-	for (int i = 1; i < rows; ++i) {
-		strPtr* newCell = new strPtr;
+	str_ptr* c = head;
+	rowLen = 1;
+	for (int i = 0; i < rows; ++i) {
+		str_ptr* newCell = new str_ptr;
 		
 		std::cout << "Row " << i + 1 << " name:\t";
-		std::cin >> newCell->data;
+		std::getline(std::cin, newCell->data);
+
+		if (newCell->data.length() > rowLen)	
+			rowLen = newCell->data.length();
+
 		c->down = newCell;
 		c = newCell;
-
-
+		
 	}
+
+	c = head;
+	colLen = 1;
 	for (int i = 0; i < cols; ++i) {
-		strPtr* newCell = new strPtr;
+		str_ptr* newCell = new str_ptr;
 		std::cout << "Column " << i + 1 << " name:\t";
-		std::cin >> newCell->data;
+		std::getline(std::cin, newCell->data);
+
+		if (newCell->data.length() > colLen)
+			colLen = newCell->data.length();
+
+		c->right = newCell;
+		c = newCell;
 	}
+	std::cout << "row len: " << rowLen << N << "col len: " << colLen;
+
+
 
 
 
@@ -78,12 +94,14 @@ head(new strPtr) //head cell init
 table::~table() {
 	//destructor
 	//deallocates all the raw pointers
+	//TODO: DELETE ALL ROWS 
 
+	str_ptr* col_del = head;
+	while (col_del != NULL) {
+		
 
-	strPtr* rDel = head;
-	while (rDel != NULL) {
-		strPtr* temp = rDel;
-		rDel = rDel->down;
+		str_ptr* temp = col_del;
+		col_del = col_del->down;
 		delete temp;
 	}
 	head = nullptr; //makes head null
